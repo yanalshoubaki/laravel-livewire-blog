@@ -14,7 +14,7 @@ class CreateTblCommentsTable extends Migration
     public function up()
     {
         Schema::create('tbl_comments', function (Blueprint $table) {
-            $table->increments('comment_id ');
+            $table->increments('comment_id');
             $table->integer('post_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->text('comment_content');

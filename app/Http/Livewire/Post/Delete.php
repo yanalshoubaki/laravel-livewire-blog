@@ -8,6 +8,6 @@ class Delete extends Component
 {
     public function render()
     {
-        return view('livewire.post.delete');
+        return view('livewire.post.delete')->extends('layout')->section('content');
     }
 }

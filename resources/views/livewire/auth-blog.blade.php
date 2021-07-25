@@ -1,4 +1,5 @@
 @if(Route::is('login'))
+    @section('title', 'Login')
     <div class="lg:flex">
         <div class="lg:w-1/2 xl:max-w-screen-sm">
             <div class="py-12 bg-indigo-100 lg:bg-white flex justify-center lg:justify-start lg:px-12">
@@ -138,7 +139,9 @@
         </div>
     </div>
 @elseif(Route::is('register'))
-    <div class="lg:flex">
+    @section('title', 'Register')
+
+<div class="lg:flex">
         <div class="lg:w-1/2 xl:max-w-screen-sm">
             <div class="py-12 bg-indigo-100 lg:bg-white flex justify-center lg:justify-start lg:px-12">
                 <div class="cursor-pointer flex items-center">

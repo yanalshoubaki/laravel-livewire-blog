@@ -19,11 +19,9 @@ class CreateTblPostsTable extends Migration
             $table->integer('author_id')->unsigned();
             $table->string('post_title');
             $table->text('post_content');
-            $table->integer('author_id');
             $table->string('post_slug');
             $table->string('post_image');
             $table->integer('post_status');
-
             $table->timestamps();
         });
     }

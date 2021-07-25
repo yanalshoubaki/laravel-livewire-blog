@@ -17,7 +17,7 @@ class Create extends Component
     use WithFileUploads;
 
     public $saveSuccess = false;
-    public $post_title, $post_image, $post_content, $post_category;
+    public $post_title ='', $post_image, $post_content='', $post_category;
     public $post;
     public $category;
     protected $rules = [

@@ -9,7 +9,7 @@ class Comment extends Model
 {
     use HasFactory;
     public $table = 'tbl_comments';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'comment_id';
 
     public $timestamps = true;
     protected $fillable = ['post_id', 'user_id', 'comment_content', 'comment_parent'];

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+
     use HasFactory;
     public $table = 'tbl_posts';
     protected $primaryKey = 'post_id';

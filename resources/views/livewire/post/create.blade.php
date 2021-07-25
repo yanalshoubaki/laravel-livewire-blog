@@ -1,3 +1,5 @@
+@section('title', 'Create Post')
+
 <div class="container">
     <div class="w-2/4 mx-auto p-4">
         <h1 class="text-4xl mt-6 tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
@@ -59,7 +61,7 @@
                                 class="block w-full transition duration-150 ease-in-out appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                             <option selected>Choose Category .....</option>
 
-                        @foreach($category->all() as $row)
+                            @foreach($category->all() as $row)
                                 <option value="{{$row->category_id}}">{{$row->category_title}}</option>
                             @endforeach
                         </select>
@@ -71,8 +73,28 @@
                 <div class="sm:col-span-6 m-2 ">
                     <label for="body" class="block text-sm font-medium text-gray-700">Body</label>
                     <div class="mt-1">
-                        <textarea id="post_content" rows="3" wire:model="post_content"
-                                  class="shadow-sm focus:ring-indigo-500 appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
+                        <div class="mt-2 bg-white" wire:ignore>
+                            <div
+                                class="h-64"
+                                x-data
+                                x-ref="quillEditor"
+                                x-init="
+        quill = new Quill($refs.quillEditor, {theme: 'bubble' , modules: {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      ['bold', 'italic', 'underline'],
+      ['image', 'code-block']
+    ]
+  },});
+        quill.on('text-change', function () {
+          $dispatch('quill-input', quill.root.innerHTML);
+        });
+      "
+                                x-on:quill-input.debounce.2000ms="@this.set('post_content', $event.detail)"
+                            >
+                                {!! $post_content !!}
+                            </div>
+                        </div>
                     </div>
                     @error('post_content') <span class="error">{{ $message }}</span> @enderror
 
@@ -85,3 +107,12 @@
         </div>
     </div>
 </div>
+@push('styles')
+    <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+
+@endpush
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.7.3/dist/alpine.min.js"></script>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+@endpush

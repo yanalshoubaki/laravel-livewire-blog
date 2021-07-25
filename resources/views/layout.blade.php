@@ -33,6 +33,7 @@
 
         <!-- assets -->
         <link type="text/css" rel="stylesheet" href="{{ asset('css/app.css') }}">
+        @stack('styles')
 
         <style>
             body {
@@ -42,16 +43,13 @@
         <!-- Please don't use massive JS files for minor functionality. This is okay for the demo, though. -->
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         @livewireScripts
+
     </head>
     <body>
+
     <x-header></x-header>
-
-
         @yield('content')
-
-
-
-        @stack('scripts')
-
+    <x-footer></x-footer>
+    @stack('scripts')
     </body>
 </html>
