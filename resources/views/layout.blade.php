@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8"/>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<head>
+        <meta charset="utf-8" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta name="author" content="Yanal Shoubaki - yanalshoubaki233@gmail.com"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="Yanal Shoubaki - yanalshoubaki233@gmail.com" />
 
         <title>@yield('title') - Blog</title>
 
@@ -29,9 +29,9 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-        @livewireStyles
+    @livewireStyles
 
-        <!-- assets -->
+    <!-- assets -->
         <link type="text/css" rel="stylesheet" href="{{ asset('css/app.css') }}">
         @stack('styles')
 
@@ -40,16 +40,22 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+@livewireScripts
         <!-- Please don't use massive JS files for minor functionality. This is okay for the demo, though. -->
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-        @livewireScripts
+
 
     </head>
     <body>
+    @if(!Route::is('login') && !Route::is('register'))
+        <x-header></x-header>
+    @endif
+    @yield('content')
+    @if(!Route::is('login') && !Route::is('register'))
 
-    <x-header></x-header>
-        @yield('content')
-    <x-footer></x-footer>
+        <x-footer></x-footer>
+    @endif
+
     @stack('scripts')
     </body>
 </html>

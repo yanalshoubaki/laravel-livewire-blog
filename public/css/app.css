@@ -31867,6 +31867,14 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu{
+  right: 20px;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -188001,4 +188009,3 @@ video {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
-

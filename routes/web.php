@@ -18,8 +18,12 @@ Route::get('blog', \App\Http\Livewire\Blog::class)->name('blog');
 Route::get('blog/feed', \App\Http\Livewire\Blog::class)->name('blog.feed');
 Route::get('blog/latest', \App\Http\Livewire\Blog::class)->name('blog.latest');
 
-Route::get('auth/login', \App\Http\Livewire\AuthBlog::class)->name('login');
-Route::get('auth/register', \App\Http\Livewire\AuthBlog::class)->name('register');
+Route::get('auth/login', \App\Http\Livewire\Auth\Login::class)->name('login');
+Route::get('auth/register', \App\Http\Livewire\Auth\Register::class)->name('register');
+Route::get('auth/Logout', function () {
+    auth()->logout();
+    return redirect()->route('blog');
+})->name('logout');
 
 Route::prefix('category')->name('category.')->group(function () {
     Route::get('create', \App\Http\Livewire\Category\Create::class)->name('create')->middleware('auth');
@@ -38,3 +42,5 @@ Route::prefix('post')->name('posts.')->group(function () {
 });
 
 
+Route::get('profile', \App\Http\Livewire\Profile::class)->name('profile')->middleware('auth');
+Route::get('settings', \App\Http\Livewire\Settings::class)->name('settings')->middleware('auth');

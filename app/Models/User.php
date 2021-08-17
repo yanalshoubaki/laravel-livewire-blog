@@ -12,10 +12,10 @@ class User extends Authenticatable
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
-    public $table = 'tbl_users';
-    public $timestamps = true;
+    public    $table      = 'tbl_users';
+    public    $timestamps = true;
     protected $primaryKey = 'user_id';
-    protected $fillable = ['name', 'email', 'password',];
+    protected $fillable   = ['first_name', 'last_name', 'username', 'user_email', 'password', 'is_admin'];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -28,11 +28,38 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = ['email_verified_at' => 'datetime',];
-    public function postsRealtion() {
+
+    protected $appends = ['user_picture'];
+
+
+    public function name ()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+    public function metaRelation ()
+    {
+        return $this->hasMany(Usermeta::class, 'user_id');
+    }
+
+    public function meta ()
+    {
+        return $this->metaRelation;
+    }
+
+    public function postsRealtion ()
+    {
         return $this->hasMany(Post::class, 'user_id');
     }
-    public function posts() {
-        return $this->postsRealtion;
 
+    public function posts ()
+    {
+        return $this->postsRealtion;
     }
+
+    public function getUserPictureAttribute() {
+        return $this->meta()->firstWhere('meta_key', 'user_picture')->meta_value;
+    }
+
+
 }

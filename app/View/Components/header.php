@@ -15,6 +15,10 @@ class header extends Component
     {
         //
     }
+    public function logout() {
+        auth()->logout();
+        return redirect()->route('blog');
+    }
 
     /**
      * Get the view / contents that represent the component.

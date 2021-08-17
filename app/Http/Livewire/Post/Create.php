@@ -24,7 +24,7 @@ class Create extends Component
         'post_title' => 'required|min:6',
         'post_content' => 'required|min:6',
         'post_category' => 'required',
-        'post_image' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048|dimensions:max_width=1200,max_height=800'];
+        'post_image' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048'];
 
     public function mount() {
         $this->post = new Post;
@@ -47,6 +47,7 @@ class Create extends Component
         $this->post->post_status = 1;
         $this->post->author_id = auth()->user()->user_id;
         $this->post->category_id = $post_category;
+        $this->post->post_view = 0;
         $this->post->save();
         $this->saveSuccess = true;
     }
