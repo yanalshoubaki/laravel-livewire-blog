@@ -50,7 +50,12 @@
     @if(!Route::is('login') && !Route::is('register'))
         <x-header></x-header>
     @endif
-    @yield('content')
+    <div id="app" class="flex flex-col justify-between items-center min-h-screen">
+        <div class="w-full py-16">
+            @yield('content')
+        </div>
+
+    </div>
     @if(!Route::is('login') && !Route::is('register'))
 
         <x-footer></x-footer>

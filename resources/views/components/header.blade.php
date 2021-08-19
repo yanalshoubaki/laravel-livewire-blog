@@ -16,14 +16,14 @@
             @if(Auth::user())
                 <div class="dropdown ">
                     <a
-                            class="inline-flex rounded-full bg-blue-600 text-white items-center border-0 py-1 px-3 focus:outline-none mt-4 md:mt-0">{{auth()->user()->first_name}}</a>
+                            class="inline-flex rounded-full bg-blue-600 text-white items-center border-0 py-1 px-3 focus:outline-none mt-4 md:mt-0"><img src="{{auth()->user()->photo}}" class="w-10 h-10 rounded-full mr-2"> {{auth()->user()->name}}</a>
                             <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
-                                <li class="">
+                                <li>
                                     <a class="rounded-t bg-gray-200 py-2 px-4 block whitespace-no-wrap flex" href="{{route('profile')}}">
-                                        <img src="{{auth()->user()->user_picture}}" class="w-14 h-14 rounded-full mr-2">
+                                        <img src="{{auth()->user()->photo}}" class="w-14 h-14 rounded-full mr-2">
                                         <div>
 
-                                        {{auth()->user()->name()}}
+                                        {{auth()->user()->name}}
                                         <span class="block text-sm text-gray-400">{{auth()->user()->user_email}}</span>
 
                                         </div>
@@ -31,13 +31,13 @@
                                     </a>
                                 </li>
                                 <hr>
-                                <li class=""><a class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Settings</a></li>
-                                <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="{{route('logout')}}">Logout</a></li>
+                                <li><a class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="{{route('settings')}}">Settings</a></li>
+                                <li><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="{{route('logout')}}">Logout</a></li>
                             </ul>
                 </div>
             @else
                 <a href="{{route('login')}}"
-                   class="inline-flex mr-2 items-center bg-white border-2 border-gray-500 py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0">Login</a>
+                   class="inline-flex mr-2 items-center bg-white text-blue-600  py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0">Login</a>
                 <a href="{{route('register')}}"
                    class="inline-flex items-center bg-blue-600 border-0 py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0 text-white">Register</a>
 

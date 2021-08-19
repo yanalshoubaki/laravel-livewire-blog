@@ -15,13 +15,15 @@ class User extends Authenticatable
     public    $table      = 'tbl_users';
     public    $timestamps = true;
     protected $primaryKey = 'user_id';
-    protected $fillable   = ['first_name', 'last_name', 'username', 'user_email', 'password', 'is_admin'];
+    protected $fillable   = ['name', 'username', 'user_email', 'password', 'is_admin'];
+
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = ['password', 'remember_token',];
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -29,12 +31,11 @@ class User extends Authenticatable
      */
     protected $casts = ['email_verified_at' => 'datetime',];
 
-    protected $appends = ['user_picture'];
 
 
     public function name ()
     {
-        return $this->first_name . ' ' . $this->last_name;
+        return $this->name;
     }
 
     public function metaRelation ()
@@ -56,10 +57,5 @@ class User extends Authenticatable
     {
         return $this->postsRealtion;
     }
-
-    public function getUserPictureAttribute() {
-        return $this->meta()->firstWhere('meta_key', 'user_picture')->meta_value;
-    }
-
 
 }

@@ -34,13 +34,19 @@ Route::prefix('category')->name('category.')->group(function () {
 });
 
 Route::prefix('post')->name('posts.')->group(function () {
-    Route::get('create', \App\Http\Livewire\Post\Create::class)->name('create')->name('create')->middleware('auth');
+    Route::get('create', \App\Http\Livewire\Post\Create::class)->name('create')->middleware('auth');
     Route::get('all', \App\Http\Livewire\Post\All::class)->name('all');
     Route::get('{slug}', \App\Http\Livewire\Post\View::class)->name('view');
-    Route::get('{id}/update', \App\Http\Livewire\Post\Edit::class)->name('edit')->name('edit')->middleware('auth');
-    Route::get('{id}/delete', \App\Http\Livewire\Post\Delete::class)->name('delete')->name('delete')->middleware('auth');
+    Route::get('{id}/update', \App\Http\Livewire\Post\Edit::class)->name('edit')->middleware('auth');
+    Route::get('{id}/delete', \App\Http\Livewire\Post\Delete::class)->name('delete')->middleware('auth');
 });
 
 
 Route::get('profile', \App\Http\Livewire\Profile::class)->name('profile')->middleware('auth');
-Route::get('settings', \App\Http\Livewire\Settings::class)->name('settings')->middleware('auth');
+Route::get('settings', \App\Http\Livewire\Settings\Profile::class)->name('settings')->middleware('auth');
+Route::prefix('settings')->middleware('auth')->name('settings.')->group(function () {
+    Route::get('profile', \App\Http\Livewire\Settings\Profile::class)->name('profile');
+    Route::get('security', \App\Http\Livewire\Settings\Security::class)->name('security');
+    Route::get('notification', \App\Http\Livewire\Settings\Notifications::class)->name('notification');
+
+});

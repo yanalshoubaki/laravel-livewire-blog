@@ -48,6 +48,7 @@ class Create extends Component
         $this->post->author_id = auth()->user()->user_id;
         $this->post->category_id = $post_category;
         $this->post->post_view = 0;
+        $this->post->post_summary = Str::limit($post_content, 150, '...');
         $this->post->save();
         $this->saveSuccess = true;
     }

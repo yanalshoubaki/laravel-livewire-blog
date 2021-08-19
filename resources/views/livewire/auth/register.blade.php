@@ -106,30 +106,18 @@
             >Register</h2>
             <div class="mt-12">
                 @if($currentStep === 1)
-                    <div class="grid grid-cols-2">
                         <div class="mb-4 mr-2">
-                            <div class="text-sm font-bold text-gray-700 tracking-wide">First Name</div>
+                            <div class="text-sm font-bold text-gray-700 tracking-wide">Full Name</div>
                             <label>
                                 <input
-                                        type="text" wire:model="first_name"
+                                        type="text" wire:model="name"
                                         class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                                 >
                             </label>
-                            @error('first_name') <span class="text-red-600">{{ $message }}</span> @enderror
+                            @error('name') <span class="text-red-600">{{ $message }}</span> @enderror
 
                         </div>
-                        <div class="mb-4">
-                            <div class="text-sm font-bold text-gray-700 tracking-wide">Last Name</div>
-                            <label>
-                                <input
-                                        type="text" wire:model="last_name"
-                                        class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                                >
-                            </label>
-                            @error('last_name') <span class="text-red-600">{{ $message }}</span> @enderror
 
-                        </div>
-                    </div>
                     <div class="mb-4">
                         <div class="text-sm font-bold text-gray-700 tracking-wide">Username</div>
                         <label>

@@ -4,27 +4,24 @@
         class="w-3/4 my-4 mx-auto p-4 border-b border-t border-r border-l rounded-1 border-gray-200 {{$post->post_id}}">
         <div class="post-block border-gray-500 mb-4 pb-4" id="post-{{$post->post_id}}">
             <div class="post_image mb-2 ">
-                <img src="{{$post->post_image}}" class="w-full" alt="">
+                <img src="{{$post->post_image}}" class="w-full" alt="{{$post->post_title}}">
             </div>
             <div class="post_info p-4">
                 <h1 class="text-4xl font-bold">{{ $post->post_title }}</h1>
-                <div class="flex justify-start mt-4">
-            <span class="author mr-1 flex justify-start">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                     stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                </svg>
-                {{$post->user()->name()}}
-            </span>
-                    <span class="readtime flex justify-start">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                     stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                {{readDuration($post->post_content) . ' min read'}}
-            </span>
+                <div class="flex justify-start mt-4 items-center">
+                    <span class="author mr-1 flex justify-start items-center font-bold">
+                        <img src="{{$post->user()->photo}}" class="w-12 rounded-full mr-2" alt="{{$post->user()->username}}">
+                        {{$post->user()->name}}
+                    </span>
+                    <span class="date mx-2 flex justify-start text-gray-400 items-center">
+                        {{ Carbon\Carbon::parse($post->created_at)->isoFormat('MMM Do YY') }}
+                        <span class="mx-2"> . </span>
+                        <span class="italic">Updated {{ Carbon\Carbon::parse($post->updated_at)->isoFormat('MMM Do') }}</span>
+                    </span>
+                    <span class="readtime flex justify-start text-gray-400">
+                        <span class="mx-2"> . </span>
+                        {{readDuration($post->post_content) . ' min read'}}
+                    </span>
 
                 </div>
             </div>

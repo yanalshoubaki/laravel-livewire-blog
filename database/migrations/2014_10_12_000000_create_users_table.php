@@ -15,12 +15,14 @@ class CreateUsersTable extends Migration
     {
         Schema::create('tbl_users', function (Blueprint $table) {
             $table->increments('user_id');
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('name');
             $table->string('username')->unique();
             $table->string('user_email')->unique();
             $table->string('password');
-            $table->boolean('is_admin')->nullable();
+            $table->text('bio')->nullable();
+            $table->string('photo')->default('https://cdn.devdojo.com/users/July2021/yanalshoubaki233.jpg');
+            $table->boolean('is_admin')->default(0);
+            $table->boolean('is_active')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

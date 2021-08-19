@@ -73,7 +73,7 @@
                 <div class="sm:col-span-6 m-2 ">
                     <label for="body" class="block text-sm font-medium text-gray-700">Body</label>
                     <div class="mt-1">
-                        <div class="mt-2 bg-white" wire:ignore>
+                        <div class="mt-2 bg-white border border-gray-200" wire:ignore>
                             <div
                                 class="h-64"
                                 x-data

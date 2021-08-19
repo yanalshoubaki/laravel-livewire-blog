@@ -4,13 +4,15 @@ namespace App\Http\Livewire\Auth;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class Register extends Component
 {
     use WithFileUploads;
-    public $first_name, $last_name, $user_email, $password,  $photo, $username;
+    public $name, $user_email, $password, $photo, $username;
     public $user;
     public $currentStep = 1;
     public $saveSuccess = false, $failed = false;
@@ -22,11 +24,10 @@ class Register extends Component
     {
         $this->validate(
         [
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'name' => 'required',
             'user_email' => 'required|unique:tbl_users|email',
             'password' => 'required',
-            'username' => 'required|unique:tbl_users'
+            'username' => 'required|unique:tbl_users',
         ],
         [
             'user_email.required' => 'Email field is required.',
@@ -42,27 +43,19 @@ class Register extends Component
     public function registerStep2() {
         $this->validate(
             [
-                'photo' => 'required',
-
+                'photo' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048'
             ],
-
         );
-       $image =         $this->photo->store('public/users');
+        $imageName = random_int(500, 999) * time() . '.' . $this->photo->extension();
+        $filePath = Storage::disk('public')->putFileAs('images', $this->photo, $imageName);
         $user = $this->user->create([
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
+            'name' => $this->name,
             'user_email' => $this->user_email,
             'username' => $this->username,
-            'password' => Hash::make($this->password)
+            'password' => Hash::make($this->password),
+            'photo' => URL::to('/') . '/storage/' . $filePath
         ]);
 
-        $user->metaRelation()->createMany([
-            [
-                'user_id' => $user->user_id,
-                'meta_key'=> 'user_picture',
-                'meta_value' => env('APP_URL') . '/' . $image
-            ],
-        ]);
         $this->user = $user;
         $this->currentStep = 3;
 
