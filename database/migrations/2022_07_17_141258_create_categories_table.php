@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserSocialsTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateUserSocialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_socials', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('user_id')->on('tbl_users')->onDelete('cascade');
-            $table->string('website');
-            $table->string('link');
+            $table->foreignId('parent_id')->constrained('categories');
+            $table->string('name');
+            $table->string('description');
+            $table->string('slug');
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateUserSocialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_socials');
+        Schema::dropIfExists('categories');
     }
 }

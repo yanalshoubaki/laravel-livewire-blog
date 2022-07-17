@@ -13,16 +13,16 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_users', function (Blueprint $table) {
-            $table->increments('user_id');
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
             $table->string('name');
             $table->string('username')->unique();
-            $table->string('user_email')->unique();
+            $table->string('email')->unique();
             $table->string('password');
             $table->text('bio')->nullable();
-            $table->string('photo')->default('https://cdn.devdojo.com/users/July2021/yanalshoubaki233.jpg');
-            $table->boolean('is_admin')->default(0);
-            $table->boolean('is_active')->default(1);
+            $table->string('avatar')->default('https://cdn.devdojo.com/users/July2021/yanalshoubaki233.jpg');
+            $table->tinyInteger('is_admin')->default(0);
+            $table->tinyInteger('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -9,20 +9,14 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
-    public    $table      = 'tbl_users';
-    public    $timestamps = true;
-    protected $primaryKey = 'user_id';
-    protected $fillable   = ['name', 'username', 'user_email', 'password', 'is_admin'];
+    protected $fillable   = ['name', 'username', 'email', 'password', 'is_admin', 'status', 'bio', 'avatar'];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token',];
+    protected $hidden = ['remember_token',];
 
     /**
      * The attributes that should be cast to native types.
@@ -30,32 +24,5 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = ['email_verified_at' => 'datetime',];
-
-
-
-    public function name ()
-    {
-        return $this->name;
-    }
-
-    public function metaRelation ()
-    {
-        return $this->hasMany(Usermeta::class, 'user_id');
-    }
-
-    public function meta ()
-    {
-        return $this->metaRelation;
-    }
-
-    public function postsRealtion ()
-    {
-        return $this->hasMany(Post::class, 'user_id');
-    }
-
-    public function posts ()
-    {
-        return $this->postsRealtion;
-    }
 
 }

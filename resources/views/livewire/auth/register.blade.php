@@ -7,13 +7,13 @@
     </div>
 @endif
 <div class="w-full py-6 ">
-    <div class="flex justify-center content-center">
+    <div class="flex content-center justify-center">
         <div class="w-1/4">
             <div class="relative mb-2">
-                <div class="w-10 h-10 mx-auto bg-green-500 rounded-full text-lg text-white flex items-center">
-              <span class="text-center text-white w-full">
+                <div class="flex items-center w-10 h-10 mx-auto text-lg text-white bg-green-500 rounded-full">
+              <span class="w-full text-center text-white">
                   <svg
-                          xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mx-auto" viewBox="0 0 20 20"
                           fill="currentColor"
                   >
                   <path
@@ -32,20 +32,20 @@
         <div class="w-1/4">
             <div class="relative mb-2">
                 <div
-                        class="absolute flex align-center items-center align-middle content-center"
+                        class="absolute flex items-center content-center align-middle align-center"
                         style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)"
                 >
-                    <div class="w-full bg-gray-200 rounded items-center align-middle align-center flex-1">
+                    <div class="items-center flex-1 w-full align-middle bg-gray-200 rounded align-center">
                         <div
-                                class="w-0 bg-green-300 py-1 rounded"
+                                class="w-0 py-1 bg-green-300 rounded"
                                 style="{{ $currentStep == 2 || $currentStep == 3 ?   " width: 100%;" : ''}}"
                         ></div>
                     </div>
                 </div>
                 <div class="w-10 h-10 mx-auto {{ $currentStep == 2 || $currentStep == 3 ?   "bg-green-500" : 'bg-gray-200'}} rounded-full text-lg text-white flex items-center">
-              <span class="text-center text-white w-full">
+              <span class="w-full text-center text-white">
                 <svg
-                        xmlns="http://www.w3.org/2000/svg" class="h-5 w-5  mx-auto" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mx-auto" viewBox="0 0 20 20"
                         fill="currentColor"
                 >
                   <path
@@ -65,12 +65,12 @@
         <div class="w-1/4">
             <div class="relative mb-2">
                 <div
-                        class="absolute flex align-center items-center align-middle content-center"
+                        class="absolute flex items-center content-center align-middle align-center"
                         style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)"
                 >
-                    <div class="w-full bg-gray-200 rounded items-center align-middle align-center flex-1">
+                    <div class="items-center flex-1 w-full align-middle bg-gray-200 rounded align-center">
                         <div
-                                class="w-0 bg-green-300 py-1 rounded"
+                                class="w-0 py-1 bg-green-300 rounded"
                                 style="{{ $currentStep == 3  ?   " width: 100%;" : ''}}"
                         ></div>
                     </div>
@@ -78,7 +78,7 @@
 
                 <div class="w-10 h-10 mx-auto {{ $currentStep == 3 ?   "bg-green-500" : 'bg-gray-200'}}  rounded-full text-lg text-white flex items-center">
                     <svg
-                            xmlns="http://www.w3.org/2000/svg" class="h-5 w-5  mx-auto" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mx-auto" viewBox="0 0 20 20"
                             fill="currentColor"
                     >
                         <path
@@ -99,19 +99,18 @@
 </div>
 <div class="lg:flex">
     <div class="w-full">
-        <div class="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 lg:mx-auto lg:w-1/2">
+        <div class="px-12 mt-10 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 lg:mx-auto lg:w-1/2">
             <h2
-                    class="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
-                            xl:text-bold"
+                    class="text-4xl font-semibold text-center text-indigo-900 font-display lg:text-left xl:text-5xl xl:text-bold"
             >Register</h2>
             <div class="mt-12">
                 @if($currentStep === 1)
                         <div class="mb-4 mr-2">
-                            <div class="text-sm font-bold text-gray-700 tracking-wide">Full Name</div>
+                            <div class="text-sm font-bold tracking-wide text-gray-700">Full Name</div>
                             <label>
                                 <input
                                         type="text" wire:model="name"
-                                        class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                                        class="w-full py-2 text-lg border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                                 >
                             </label>
                             @error('name') <span class="text-red-600">{{ $message }}</span> @enderror
@@ -119,11 +118,11 @@
                         </div>
 
                     <div class="mb-4">
-                        <div class="text-sm font-bold text-gray-700 tracking-wide">Username</div>
+                        <div class="text-sm font-bold tracking-wide text-gray-700">Username</div>
                         <label>
                             <input
                                     type="text" wire:model="username"
-                                    class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                                    class="w-full py-2 text-lg border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                                     placeholder="yanalshoubaki"
                             >
                         </label>
@@ -131,25 +130,25 @@
 
                     </div>
                     <div class="mb-4">
-                        <div class="text-sm font-bold text-gray-700 tracking-wide">Email Address</div>
+                        <div class="text-sm font-bold tracking-wide text-gray-700">Email Address</div>
                         <label>
                             <input
-                                    type="email" wire:model="user_email"
-                                    class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                                    type="email" wire:model="email"
+                                    class="w-full py-2 text-lg border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                                     placeholder="mike@gmail.com"
                             >
                         </label>
-                        @error('user_email') <span class="text-red-600">{{ $message }}</span> @enderror
+                        @error('email') <span class="text-red-600">{{ $message }}</span> @enderror
 
                     </div>
                     <div class="mt-8">
-                        <div class="text-sm font-bold text-gray-700 tracking-wide">
+                        <div class="text-sm font-bold tracking-wide text-gray-700">
                             Password
                         </div>
                         <label>
                             <input
                                     type="password" wire:model="password"
-                                    class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                                    class="w-full py-2 text-lg border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                                     placeholder="Enter your password"
                             >
                         </label>
@@ -158,31 +157,29 @@
                     </div>
                     <div class="mt-10">
                         <button
-                                type="button" wire:click="registerStep1" class="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
-                                        font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
-                                        shadow-lg"
+                                type="button" wire:click="registerStep1" class="w-full p-4 font-semibold tracking-wide text-gray-100 bg-indigo-500 rounded-full shadow-lg font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600"
                         >
                             Next
                         </button>
                     </div>
 
-                    <div class="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
+                    <div class="mt-12 text-sm font-semibold text-center text-gray-700 font-display">
                         Do you have an account ? <a
-                                href="{{route('login')}}" class="cursor-pointer text-indigo-600 hover:text-indigo-800"
+                                href="{{route('login')}}" class="text-indigo-600 cursor-pointer hover:text-indigo-800"
                         >Sign
                             in</a>
                     </div>
                 @endif
                 @if($currentStep === 2)
-                    <div class="text-sm font-bold text-gray-700 tracking-wide">
+                    <div class="text-sm font-bold tracking-wide text-gray-700">
                         Profile Picture
                     </div>
-                    <div class="flex w-full items-center justify-center bg-grey-lighter">
+                    <div class="flex items-center justify-center w-full bg-grey-lighter">
                         @if ($photo)
                             Photo Preview:
                             <img src="{{ $photo->temporaryUrl() }}" class="w-1/4 rounded-full">
                         @endif
-                        <label class="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-400 hover:text-white">
+                        <label class="flex flex-col items-center w-64 px-4 py-6 tracking-wide uppercase bg-white border rounded-lg shadow-lg cursor-pointer text-blue border-blue hover:bg-blue-400 hover:text-white">
                             <svg
                                     class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20"
@@ -197,18 +194,16 @@
                     </div>
                         <div class="mt-10">
                             <button
-                                    type="button" wire:click="registerStep2" class="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
-                                        font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
-                                        shadow-lg"
+                                    type="button" wire:click="registerStep2" class="w-full p-4 font-semibold tracking-wide text-gray-100 bg-indigo-500 rounded-full shadow-lg font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600"
                             >
                                 Finish Registration
                             </button>
                         </div>
                 @endif
                 @if($currentStep === 3)
-                <span class="text-center text-white w-full">
+                <span class="w-full text-center text-white">
                     <svg
-                            xmlns="http://www.w3.org/2000/svg" class="h-5 w-5  mx-auto" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mx-auto" viewBox="0 0 20 20"
                             fill="currentColor"
                     >
                       <path
