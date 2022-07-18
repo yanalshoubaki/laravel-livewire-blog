@@ -15,5 +15,12 @@ class Category extends Model
         'slug',
         'status'
     ];
-
+    public function parent()
+    {
+        return $this->belongsTo(Category::class);
+    }
+    public function post()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

@@ -2,8 +2,8 @@
     <div class="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
         <nav class="flex flex-wrap items-center text-base lg:w-2/5 md:ml-auto">
             <a href="/" class="mr-5 hover:text-gray-900">Home</a>
-            <a href="{{route('blog')}}" class="mr-5 hover:text-gray-900">Blog</a>
-            <a href="{{route('category.all')}}" class="mr-5 hover:text-gray-900">Categories</a>
+            <a href="{{route('blogs.home')}}" class="mr-5 hover:text-gray-900">Blog</a>
+            <a href="{{route('categories.home')}}" class="mr-5 hover:text-gray-900">Categories</a>
 
             <a>
                 @livewire('components.search')
@@ -20,11 +20,11 @@
                             <ul class="absolute hidden pt-1 text-gray-700 dropdown-menu">
                                 <li>
                                     <a class="flex block px-4 py-2 whitespace-no-wrap bg-gray-200 rounded-t" href="{{route('profile')}}">
-                                        <img src="{{auth()->user()->photo}}" class="mr-2 rounded-full w-14 h-14">
+                                        <img src="{{auth()->user()->avatar}}" class="mr-2 rounded-full w-14 h-14">
                                         <div>
 
                                         {{auth()->user()->name}}
-                                        <span class="block text-sm text-gray-400">{{auth()->user()->user_email}}</span>
+                                        <span class="block text-sm text-gray-400">{{auth()->user()->email}}</span>
 
                                         </div>
 

@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', \App\Http\Livewire\Blog::class);
-Route::get('blog', \App\Http\Livewire\Blog::class)->name('blog');
-Route::get('blog/feed', \App\Http\Livewire\Blog::class)->name('blog.feed');
-Route::get('blog/latest', \App\Http\Livewire\Blog::class)->name('blog.latest');
+Route::get('/', \App\Http\Livewire\Pages\Blog\Home::class);
+Route::get('blog', \App\Http\Livewire\Pages\Blog\Home::class)->name('blog');
+Route::get('blog/feed', \App\Http\Livewire\Pages\Blog\Home::class)->name('blog.feed');
+Route::get('blog/latest', \App\Http\Livewire\Pages\Blog\Home::class)->name('blog.latest');
 
 Route::get('auth/login', \App\Http\Livewire\Auth\Login::class)->name('login');
 Route::get('auth/register', \App\Http\Livewire\Auth\Register::class)->name('register');
@@ -24,29 +24,17 @@ Route::get('auth/Logout', function () {
     auth()->logout();
     return redirect()->route('blog');
 })->name('logout');
-
-Route::prefix('category')->name('category.')->group(function () {
-    Route::get('create', \App\Http\Livewire\Category\Create::class)->name('create')->middleware('auth');
-    Route::get('all', \App\Http\Livewire\Category\All::class)->name('all');
-    Route::get('{slug}', \App\Http\Livewire\Category\View::class)->name('view');
-    Route::get('{id}/update', \App\Http\Livewire\Category\Edit::class)->name('edit')->middleware('auth');
-    Route::get('{id}/delete', \App\Http\Livewire\Category\Delete::class)->name('delete')->middleware('auth');
+Route::prefix('categories')->name('categories.')->group(function () {
+    Route::get('home', \App\Http\Livewire\Pages\Category\Home::class)->name('home');
 });
 
-Route::prefix('post')->name('posts.')->group(function () {
-    Route::get('create', \App\Http\Livewire\Post\Create::class)->name('create')->middleware('auth');
-    Route::get('all', \App\Http\Livewire\Post\All::class)->name('all');
-    Route::get('{slug}', \App\Http\Livewire\Post\View::class)->name('view');
-    Route::get('{id}/update', \App\Http\Livewire\Post\Edit::class)->name('edit')->middleware('auth');
-    Route::get('{id}/delete', \App\Http\Livewire\Post\Delete::class)->name('delete')->middleware('auth');
+Route::prefix('blogs')->name('blogs.')->group(function () {
+    Route::get('home', \App\Http\Livewire\Pages\Blog\Home::class)->name('home');
 });
 
-
-Route::get('profile', \App\Http\Livewire\Profile::class)->name('profile')->middleware('auth');
-Route::get('settings', \App\Http\Livewire\Settings\Profile::class)->name('settings')->middleware('auth');
+Route::get('profile', \App\Http\Livewire\Pages\Settings\Profile::class)->name('profile')->middleware('auth');
+Route::get('settings', \App\Http\Livewire\Pages\Settings\Profile::class)->name('settings')->middleware('auth');
 Route::prefix('settings')->middleware('auth')->name('settings.')->group(function () {
-    Route::get('profile', \App\Http\Livewire\Settings\Profile::class)->name('profile');
-    Route::get('security', \App\Http\Livewire\Settings\Security::class)->name('security');
-    Route::get('notification', \App\Http\Livewire\Settings\Notifications::class)->name('notification');
-
+    Route::get('profile', \App\Http\Livewire\Pages\Settings\Profile::class)->name('profile');
+    Route::get('security', \App\Http\Livewire\Pages\Settings\Sercurity::class)->name('security');
 });

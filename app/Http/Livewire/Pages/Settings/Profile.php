@@ -10,13 +10,13 @@ use Illuminate\Support\Facades\URL;
 class Profile extends Component
 {
     use WithFileUploads;
-    public $user, $photo;
+    public $user, $avatar;
 
     protected $rules = [
         'user.name' => 'required',
-        'user.user_email' => 'required|email',
+        'user.email' => 'required|email',
         'user.username' => 'required',
-        'photo' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
+        'avatar' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
         'user.bio' => 'sometimes'
     ];
 
@@ -30,19 +30,19 @@ class Profile extends Component
     public function updateProfile()
     {
         $this->validate();
-        if (!is_string($this->photo)) {
-            $imageName = random_int(500, 999) * time() . '.' . $this->photo->extension();
-            $filePath = Storage::disk('public')->putFileAs('images', $this->photo, $imageName);
+        if (!is_string($this->avatar)) {
+            $imageName = random_int(500, 999) * time() . '.' . $this->avatar->extension();
+            $filePath = Storage::disk('public')->putFileAs('images', $this->avatar, $imageName);
             $image = URL::to('/') . '/storage/' . $filePath;
         } else {
-            $image = $this->photo;
+            $image = $this->avatar;
         }
 
         $this->user->name = $this->user->name;
         $this->user->bio = $this->user->bio;
-        $this->user->user_email = $this->user->user_email;
+        $this->user->user_email = $this->user->email;
         $this->user->username = $this->user->username;
-        $this->user->photo = $image;
+        $this->user->avatar = $image;
         $this->user->save();
     }
 

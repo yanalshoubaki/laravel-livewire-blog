@@ -19,4 +19,13 @@ class Post extends Model
         'status',
         'views'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function categry()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

@@ -12,26 +12,25 @@ class Login extends Component
     public $user;
     public $saveSuccess = false, $failed = false;
 
-    public function mount ()
+    public function mount()
     {
         $this->user = new User;
     }
 
-    public function login ()
+    public function login()
     {
 
         $this->validate(['email' => 'required|email', 'password' => 'required'], ['email.required' => 'Email field is required.', 'password.required' => 'Password is required',]);
 
-        $userdata = ['user_email' => $this->email, 'password' => $this->password];
+        $userdata = ['email' => $this->email, 'password' => $this->password];
         if (Auth::attempt($userdata)) {
             request()->session()->regenerate();
-            $this->user = User::where('user_email', $this->email)->first();
+            $this->user = User::where('email', $this->email)->first();
             Auth::login($this->user, true);
             return redirect()->intended('blog');
         } else {
             $this->failed = true;
         }
-
     }
 
     public function render()
