@@ -6,7 +6,7 @@
             Blog</h1>
 
         <div class="mt-10 space-y-8 divide-y divide-gray-200">
-            @forelse ( $posts->all() as $post )
+            @forelse ( $posts as $post )
                 @include('components.blog-posts', ['post' => $post])
 
             @empty

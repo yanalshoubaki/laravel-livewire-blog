@@ -1,10 +1,4 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.dropdown:hover .dropdown-menu {
-    display: block;
-}
-
-.dropdown-menu{
-    right: 20px;
-}
+@import url("/node_modules/toastify-js/src/toastify.css")

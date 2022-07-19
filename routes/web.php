@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\UserWizardController;
 use Illuminate\Support\Facades\Route;
-
+use Spatie\Health\Http\Controllers\HealthCheckResultsController;
+use Ycs77\LaravelWizard\Facades\Wizard;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,3 +40,6 @@ Route::prefix('settings')->middleware('auth')->name('settings.')->group(function
     Route::get('profile', \App\Http\Livewire\Pages\Settings\Profile::class)->name('profile');
     Route::get('security', \App\Http\Livewire\Pages\Settings\Sercurity::class)->name('security');
 });
+Route::get('health', HealthCheckResultsController::class);
+
+Wizard::routes('wizard/user', UserWizardController::class, 'wizard.user');

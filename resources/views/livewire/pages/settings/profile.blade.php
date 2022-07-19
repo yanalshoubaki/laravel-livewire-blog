@@ -1,6 +1,6 @@
 <div class="container pt-4 pl-3 pr-3 mx-auto profile-wrapper lg:pl-5 md:pr-0">
     <div class="w-full p-5 bg-white border border-gray-100 shadow-sm rounded-xl">
-        <form action="">
+        <form>
             <div>
                 <div>
                     <div class="flex items-center justify-between">
@@ -47,11 +47,11 @@
                             </label>
                             <div class="mt-2 sm:mt-0 sm:col-span-2">
                                 <div class="flex items-center">
-                                    <img id="avatar_preview" src="{{is_string($avatar) && $avatar}}" class="w-12 h-12 rounded-full">
+                                    <img id="avatar_preview" src="{{is_string($avatar) ? URL::asset('storage/' . $avatar) : $avatar->temporaryUrl()}}" class="w-12 h-12 rounded-full">
                                     <span class="ml-5 rounded-md shadow-sm">
                                         <button type="button" class="relative px-3 py-2 text-sm font-medium leading-4 text-gray-700 transition duration-150 ease-in-out border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800">
                                             Change
-                                            <input type="file" id="upload" class="absolute inset-0 w-full h-full opacity-0" wire:model="photo">
+                                            <input type="file" id="upload" class="absolute inset-0 w-full h-full opacity-0" wire:model="avatar">
                                             <input type="hidden" id="uploadBase64" name="avatar">
                                         </button>
                                     </span>
@@ -108,7 +108,7 @@
 											<span class="inline-flex items-center px-3 text-gray-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50 sm:text-sm">
 												https://twitter.com/
 											</span>
-                                    <input id="twitter" name="twitter" value="Itsyanal" class="flex-1 block w-full transition duration-150 ease-in-out rounded-none no-left-round form-input sm:text-sm sm:leading-5" spellcheck="false" data-ms-editor="true">
+                                    <input wire:model="social.twitter" id="twitter" name="twitter" value="Itsyanal" class="flex-1 block w-full transition duration-150 ease-in-out rounded-none no-left-round form-input sm:text-sm sm:leading-5" spellcheck="false" data-ms-editor="true">
                                     <div class="ms-editor-squiggles-container" style="all: initial;"></div></div>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
 											<span class="inline-flex items-center px-3 text-gray-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50 sm:text-sm">
 												https://facebook.com/
 											</span>
-                                    <input id="facebook" name="facebook" value="yanalalshoubaki" class="flex-1 block w-full transition duration-150 ease-in-out rounded-none no-left-round form-input sm:text-sm sm:leading-5" spellcheck="false" data-ms-editor="true">
+                                    <input id="facebook" wire:model="social.facebook"value="yanalalshoubaki" class="flex-1 block w-full transition duration-150 ease-in-out rounded-none no-left-round form-input sm:text-sm sm:leading-5" spellcheck="false" data-ms-editor="true">
                                     <div class="ms-editor-squiggles-container" style="all: initial;"></div></div>
                             </div>
                         </div>
@@ -134,7 +134,7 @@
 											<span class="inline-flex items-center px-3 text-gray-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50 sm:text-sm">
 												https://instagram.com/
 											</span>
-                                    <input id="instagram" name="instagram" value="yanalshoubaki" class="flex-1 block w-full transition duration-150 ease-in-out rounded-none no-left-round form-input sm:text-sm sm:leading-5" spellcheck="false" data-ms-editor="true">
+                                    <input id="instagram" wire:model="social.instagram" value="yanalshoubaki" class="flex-1 block w-full transition duration-150 ease-in-out rounded-none no-left-round form-input sm:text-sm sm:leading-5" spellcheck="false" data-ms-editor="true">
                                     <div class="ms-editor-squiggles-container" style="all: initial;"></div></div>
                             </div>
                         </div>
@@ -147,7 +147,7 @@
 											<span class="inline-flex items-center px-3 text-gray-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50 sm:text-sm">
 												https://github.com/
 											</span>
-                                    <input id="github" name="github" value="yanalshoubaki" class="flex-1 block w-full transition duration-150 ease-in-out rounded-none no-left-round form-input sm:text-sm sm:leading-5" spellcheck="false" data-ms-editor="true">
+                                    <input id="github" wire:model="social.github" value="yanalshoubaki" class="flex-1 block w-full transition duration-150 ease-in-out rounded-none no-left-round form-input sm:text-sm sm:leading-5" spellcheck="false" data-ms-editor="true">
                                     <div class="ms-editor-squiggles-container" style="all: initial;"></div></div>
                             </div>
                         </div>

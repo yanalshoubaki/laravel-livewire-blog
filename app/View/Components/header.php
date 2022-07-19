@@ -2,10 +2,14 @@
 
 namespace App\View\Components;
 
+use App\Models\User;
 use Illuminate\View\Component;
 
 class header extends Component
 {
+
+
+    public User $user;
     /**
      * Create a new component instance.
      *
@@ -13,9 +17,11 @@ class header extends Component
      */
     public function __construct()
     {
-        //
+        $this->user = auth()->user();
     }
-    public function logout() {
+
+    public function logout()
+    {
         auth()->logout();
         return redirect()->route('blog');
     }

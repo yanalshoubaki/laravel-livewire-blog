@@ -43,17 +43,24 @@ class Register extends Component
             ],
         );
         $imageName = random_int(500, 999) * time() . '.' . $this->avatar->extension();
-        $filePath = Storage::disk('public')->putFileAs('images', $this->avatar, $imageName);
+        $filePath = Storage::disk('public')->putFileAs('/', $this->avatar, $imageName);
         $user = $this->user->create([
             'name' => $this->name,
             'email' => $this->email,
             'username' => $this->username,
             'password' => Hash::make($this->password),
-            'avatar' => URL::to('/') . '/storage/' . $filePath
+            'avatar' => $imageName
         ]);
 
         $this->user = $user;
         $this->currentStep = 3;
+    }
+
+    public function updatedCurrentStep($step)
+    {
+        if ($step === 3) {
+            return redirect()->route('login');
+        }
     }
 
     public function render()

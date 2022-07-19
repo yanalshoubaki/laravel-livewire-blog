@@ -23,39 +23,40 @@
             Yanal Blog
         </a>
         <div class="inline-flex ml-5 lg:w-2/5 lg:justify-end lg:ml-0">
-            @if(true === false)
-            <div class="dropdown ">
+            @if($user)
+            <div
+                class="relative"
+                x-data="{open: false}"
+            >
                 <a
-                    class="inline-flex items-center px-3 py-1 mt-4 text-white bg-blue-600 border-0 rounded-full focus:outline-none md:mt-0"><img
-                        src="{{auth()->user()->photo}}"
-                        class="w-10 h-10 mr-2 rounded-full"
-                    > {{auth()->user()->name}}</a>
-                <ul class="absolute hidden pt-1 text-gray-700 dropdown-menu">
+                    @click="open = !open"
+                    class="inline-flex items-center mt-4 text-white transition-all ease-linear border-2 rounded-full cursor-pointer hover:border-gray-600 focus:outline-none "
+                ><img
+                        src="{{URL::asset('storage/' . $user->avatar)}}"
+                        class="w-10 h-10 rounded-full"
+                    ></a>
+                <ul
+                    x-show="open"
+                    class="absolute pt-1 text-gray-700 dropdown-menu"
+                >
                     <li>
                         <a
-                            class="flex block px-4 py-2 whitespace-no-wrap bg-gray-200 rounded-t"
+                            class="flex px-4 py-2 bg-gray-100 rounded-t"
                             href="{{route('profile')}}"
                         >
-                            <img
-                                src="{{$user->avatar}}"
-                                class="mr-2 rounded-full w-14 h-14"
-                            >
-                            <div>
-
+                            <div class="text-slate-900">
                                 {{$user->name}}
                                 <span class="block text-sm text-gray-400">{{$user->email}}</span>
-
                             </div>
-
                         </a>
                     </li>
                     <hr>
                     <li><a
-                            class="block px-4 py-2 whitespace-no-wrap bg-gray-200 hover:bg-gray-400"
+                            class="block px-4 py-2 whitespace-no-wrap bg-gray-200 hover:bg-gray-400 hover:text-white"
                             href="{{route('settings')}}"
                         >Settings</a></li>
                     <li><a
-                            class="block px-4 py-2 whitespace-no-wrap bg-gray-200 rounded-b hover:bg-gray-400"
+                            class="block px-4 py-2 whitespace-no-wrap bg-gray-200 rounded-b hover:bg-gray-400 hover:text-white"
                             href="{{route('logout')}}"
                         >Logout</a></li>
                 </ul>

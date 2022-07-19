@@ -41,16 +41,17 @@
             font-family: 'Nunito', sans-serif;
         }
     </style>
+
     @livewireScripts
     <!-- Please don't use massive JS files for minor functionality. This is okay for the demo, though. -->
-    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-
+    <script type="text/javascript" defer src="{{ asset('js/app.js') }}"></script>
+    @stack('scripts')
 
 </head>
 
 <body>
     @if(!Route::is('login') && !Route::is('register'))
-    <x-header></x-header>
+        @livewire('layout.header')
     @endif
     <div id="app" class="flex flex-col items-center justify-between min-h-screen">
         <div class="w-full py-16">
@@ -59,11 +60,11 @@
 
     </div>
     @if(!Route::is('login') && !Route::is('register'))
-
-    <x-footer></x-footer>
+        @livewire('layout.footer')
     @endif
 
-    @stack('scripts')
+
+
 </body>
 
 </html>
