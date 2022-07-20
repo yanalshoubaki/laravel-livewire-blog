@@ -24,10 +24,7 @@ class Login extends Component
 
         $userdata = ['email' => $this->email, 'password' => $this->password];
         if (Auth::attempt($userdata)) {
-            request()->session()->regenerate();
-            $this->user = User::where('email', $this->email)->first();
-            Auth::login($this->user, true);
-            return redirect()->intended('blog');
+            return redirect()->route('home');
         } else {
             $this->failed = true;
         }

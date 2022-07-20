@@ -9,7 +9,12 @@ class Header extends Component
 {
 
 
-    public User $user;
+    /**
+     * User data
+     *
+     * @var User|null
+     */
+    public User|null $user;
 
 
     public function mount()

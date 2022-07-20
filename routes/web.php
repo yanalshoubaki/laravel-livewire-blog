@@ -15,7 +15,7 @@ use Ycs77\LaravelWizard\Facades\Wizard;
 |
 */
 
-Route::get('/', \App\Http\Livewire\Pages\Blog\Home::class);
+Route::get('/', \App\Http\Livewire\Pages\Blog\Home::class)->name('home');
 Route::get('blog', \App\Http\Livewire\Pages\Blog\Home::class)->name('blog');
 Route::get('blog/feed', \App\Http\Livewire\Pages\Blog\Home::class)->name('blog.feed');
 Route::get('blog/latest', \App\Http\Livewire\Pages\Blog\Home::class)->name('blog.latest');
